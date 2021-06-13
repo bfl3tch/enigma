@@ -16,7 +16,7 @@ class Enigma
     rand(99999).to_s.rjust(5, "0")
   end
 
-  def offset(date)
+  def offset(date = @hash[:date])
     string_split = (date.to_i ** 2).to_s.split("")
     @offset = string_split[-4, 4]
     full_offset = @offset.join.to_i
