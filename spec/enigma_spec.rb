@@ -21,9 +21,8 @@ RSpec.describe Enigma do
     end
     it 'can encrypt something' do
       enigma = Enigma.new
-      expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
 
-      expect(enigma.encrypt).to eq(expected)
+      expect(enigma.encrypt("hello", key, date)).to eq()
     end
   end
 end
