@@ -44,7 +44,7 @@ RSpec.describe Enigma do
 
     it 'can generate 4 individual shifts' do
       @enigma.offset("040621")
-      @enigma.encrypt("hello world", "02715", "040895")
+      @enigma.encrypt("hello world", "02715", "040621")
 
       expect(@enigma.a_shift).to eq(7)
       expect(@enigma.b_shift).to eq(33)
