@@ -42,6 +42,16 @@ RSpec.describe Enigma do
       expect(@enigma.d_key).to eq(15)
     end
 
+    it 'can generate 4 individual shifts' do
+      @enigma.encrypt("hello world", "02715", "040895")
+
+      expect(@enigma.a_shift).to eq(7)
+      expect(@enigma.a_shift).to eq(33)
+      expect(@enigma.a_shift).to eq(75)
+      expect(@enigma.a_shift).to eq(16)
+
+    end
+
     it 'can encrypt something' do
       expected = {
         encryption: "keder ohulw",
