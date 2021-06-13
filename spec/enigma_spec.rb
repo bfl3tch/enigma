@@ -27,10 +27,10 @@ RSpec.describe Enigma do
     it 'can calculate the shifts' do
       @enigma.offset("040621")
 
-      expect(@enigma.shift_a).to eq(5)
-      expect(@enigma.shift_b).to eq(6)
-      expect(@enigma.shift_c).to eq(4)
-      expect(@enigma.shift_d).to eq(1)
+      expect(@enigma.offset_a).to eq(5)
+      expect(@enigma.offset_b).to eq(6)
+      expect(@enigma.offset_c).to eq(4)
+      expect(@enigma.offset_d).to eq(1)
     end
 
     it 'can encrypt something' do
