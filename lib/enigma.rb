@@ -41,14 +41,29 @@ class Enigma
   def encrypt(message, key = nil, date = nil)
     key ||= key_gen
     date ||= todays_date
-    @hash = { encryption: encrypted_message,
+    @hash = { encryption: message,
       key: key,
       date: date }
   end
-      #
-      # @a_key = ([:key]).to_i[0,1]
-      # @b_key = ([:key]).to_i[1,2]
-      # @c_key = ([:key]).to_i[2,3]
-      # @d_key = ([:key]).to_i[3,4]
+
+  def keys
+    @hash[:key].split("")
+  end
+
+  def a_key
+    "#{keys[0]}#{keys[1]}".chomp.to_i
+  end
+
+  def b_key
+    "#{keys[1]}#{keys[2]}".chomp.to_i
+  end
+
+  def c_key
+    "#{keys[2]}#{keys[3]}".chomp.to_i
+  end
+
+  def d_key
+    "#{keys[3]}#{keys[4]}".chomp.to_i
+  end
 
 end
