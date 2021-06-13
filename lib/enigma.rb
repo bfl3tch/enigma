@@ -13,7 +13,9 @@ class Enigma
   end
 
   def encrypt(message, key = key_gen, date = todays_date)
-    alphabet.create_alphabet
+    {hash[:message] = message,
+    hash[:key] = key,
+    hash[:date] = date}
   end
 
 
