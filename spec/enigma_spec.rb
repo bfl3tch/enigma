@@ -43,12 +43,13 @@ RSpec.describe Enigma do
     end
 
     it 'can generate 4 individual shifts' do
+      @enigma.offset("040621")
       @enigma.encrypt("hello world", "02715", "040895")
 
       expect(@enigma.a_shift).to eq(7)
-      expect(@enigma.a_shift).to eq(33)
-      expect(@enigma.a_shift).to eq(75)
-      expect(@enigma.a_shift).to eq(16)
+      expect(@enigma.b_shift).to eq(33)
+      expect(@enigma.c_shift).to eq(75)
+      expect(@enigma.d_shift).to eq(16)
 
     end
 
