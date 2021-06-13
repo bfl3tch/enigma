@@ -19,7 +19,7 @@ class Enigma
   def offset(date)
     string_split = (date.to_i ** 2).to_s.split("")
     @offset = string_split[-4, 4]
-    result = @offset.join.to_i
+    full_offset = @offset.join.to_i
   end
 
   def offset_a
@@ -64,6 +64,22 @@ class Enigma
 
   def d_key
     "#{keys[3]}#{keys[4]}".chomp.to_i
+  end
+
+  def a_shift
+    offset_a + a_key
+  end
+
+  def b_shift
+    offset_b + b_key
+  end
+
+  def c_shift
+    offset_c + c_key
+  end
+
+  def d_shift
+    offset_d + d_key
   end
 
 end
