@@ -16,12 +16,9 @@ class Enigma
     rand(99999).to_s.rjust(5, "0")
   end
 
-  def todays_date
-     Date.today.strftime("%d%m%y")
-  end
-
-  def offset
-    (encrypt.date.to_i ** 2)
+  def offset(date)
+    string_split = (date.to_i ** 2).to_s.split("")
+    string_split[-4, 4].join.to_i
   end
 
   def shift_a
@@ -32,19 +29,22 @@ class Enigma
     offset[1]
   end
 
-  def shift_a
+  def shift_c
     offset[2]
   end
 
-  def shift_a
+  def shift_d
     offset[3]
   end
 
-  def encrypt(message, key = key_gen, date = todays_date)
+  def encrypt(message, key = nil, date = nil)
+    key ||= key_gen
+    date ||= todays_date
+    # or ^ operator, looks for t/f.  if false, set to right side, if true
+    # move on
     {message: message,
     key: key_gen,
     date: date}
   end
-
 
 end
