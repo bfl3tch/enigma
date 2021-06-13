@@ -24,13 +24,22 @@ RSpec.describe Enigma do
       expect(@enigma.offset("040621")).to eq(5641)
     end
 
-    it 'can calculate the shifts' do
+    it 'can calculate the individual offsets' do
       @enigma.offset("040621")
 
       expect(@enigma.offset_a).to eq(5)
       expect(@enigma.offset_b).to eq(6)
       expect(@enigma.offset_c).to eq(4)
       expect(@enigma.offset_d).to eq(1)
+    end
+
+    it 'can calculate the individual keys' do
+      @enigma.offset("040621")
+
+      expect(@enigma.a_key).to eq(5)
+      expect(@enigma.b_key).to eq(6)
+      expect(@enigma.c_key).to eq(4)
+      expect(@enigma.d_key).to eq(1)
     end
 
     it 'can encrypt something' do
