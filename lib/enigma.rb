@@ -1,3 +1,4 @@
+require 'alphabet'
 class Enigma
 
   def initialize
@@ -41,7 +42,8 @@ class Enigma
   def encrypt(message, key = nil, date = nil)
     key ||= key_gen
     date ||= todays_date
-    @hash = { encryption: message,
+    @message = message
+    @hash = { encryption: encrypted_message,
       key: key,
       date: date }
   end
@@ -80,6 +82,14 @@ class Enigma
 
   def d_shift
     offset_d + d_key
+  end
+
+  def encrypted_message
+    #split message up into individual characters
+    ready_to_shift = @message.split("")
+    #apply shifts to each 4th character
+    ready_to_shift.each do |letter|
+      letter.
   end
 
 end
