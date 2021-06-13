@@ -21,13 +21,20 @@ RSpec.describe Enigma do
     end
 
     it 'can calculate the offset' do
-        @enigma.encrypt("hello")
-        expect(@enigma.offset).to eq(234)
+        expect(@enigma.offset("040621")).to eq(5641)
       end
 
     it 'can encrypt something' do
-      expect(@enigma.encrypt("hello")).to be_a(Hash)
-      expect(@enigma.encrypt("hello").values).to include("hello")
+      expected = {
+        encryption: "keder ohulw",
+        key: "02715",
+        date: "040895"
+      }
+      test = @enigma.encrypt("hello world", "02715", "040895")
+
+      expect(test[:encryption]).to eq(expected[:encryption])
+      expect(test[:key]).to eq(expected[:key])
+      expect(test[:date]).to eq(expected[:date])
     end
 
 
