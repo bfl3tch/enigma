@@ -39,10 +39,9 @@ class Enigma
   end
 
   def encrypt(message, key = nil, date = nil)
-    message = message
     key ||= key_gen
     date ||= todays_date
-    { encryption: encrypted_message,
+    @hash = { encryption: encrypted_message,
       key: key,
       date: date }
   end
