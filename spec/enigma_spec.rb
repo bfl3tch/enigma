@@ -47,19 +47,20 @@ RSpec.describe Enigma do
       @enigma.encrypt("hello world", "02715", "040621")
 
       expect(@enigma.a_shift).to eq(7)
-      expect(@enigma.b_shift).to eq(33)
-      expect(@enigma.c_shift).to eq(75)
+      expect(@enigma.b_shift).to eq(6)
+      expect(@enigma.c_shift).to eq(21)
       expect(@enigma.d_shift).to eq(16)
 
     end
 
     it 'can encrypt something' do
+      @enigma.offset("040621")
+      test = @enigma.encrypt("hello world", "02715", "040895")
       expected = {
         encryption: "keder ohulw",
         key: "02715",
         date: "040895"
       }
-      test = @enigma.encrypt("hello world", "02715", "040895")
 
       expect(test[:encryption]).to eq(expected[:encryption])
       expect(test[:key]).to eq(expected[:key])
