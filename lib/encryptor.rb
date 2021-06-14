@@ -1,9 +1,19 @@
-# class Encryptor
-#   attr_reader :date, :key_gen
-#
-#   def initialize(key_gen, date)
-#     @key_gen = key_gen
-#     @date = date
-#   end
-# 
-# end
+class Encryptor
+  include Alphabet
+  attr_reader :key, :date
+
+  def initialize(key, date)
+    @key = key
+    @date = date
+    @offset = Offset.new(date)
+  end
+
+  def full_shift
+    good_offset = @offset.full_offset
+    good_key = @key
+    require "pry"; binding.pry
+
+  end
+
+
+end
