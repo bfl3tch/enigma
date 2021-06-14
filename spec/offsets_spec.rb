@@ -27,6 +27,25 @@ RSpec.describe Offset do
       expect(@offset.square_date).to eq(19774265641)
     end
 
+    it 'can split up the date' do
+      allow(@offset).to receive(:todays_date).and_return("140621")
+      expected = ["1", "9", "7", "7", "4", "2", "6", "5", "6", "4", "1"]
+
+      expect(@offset.split_date).to eq(expected)
+    end
+
+    it 'can break off the last four' do
+      allow(@offset).to receive(:todays_date).and_return("140621")
+
+      expect(@offset.last_four_split).to eq(["5", "6", "4", "1"])
+    end
+
+    it 'can show the offset as integers' do
+      allow(@offset).to receive(:todays_date).and_return("140621")
+
+      expect(@offset.last_four_as_integers).to eq([5,6,4,1])
+    end
+
     it 'can use the last 4 digits' do
       allow(@offset).to receive(:todays_date).and_return("140621")
 
