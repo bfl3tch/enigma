@@ -1,31 +1,31 @@
 class Key
-  attr_reader :key, :keys
+  attr_reader :key
 
-  def initialize
-    @key = key
+  def initialize(key = nil)
+    key ||= key_gen
   end
 
   def key_gen
     @key = rand(99999).to_s.rjust(5, "0")
   end
 
-  def keys
-    @cryptic[:key].split("")
-  end
-
-  def a_key
-    "#{keys[0]}#{keys[1]}".chomp.to_i
-  end
-
-  def b_key
-    "#{keys[1]}#{keys[2]}".chomp.to_i
-  end
-
-  def c_key
-    "#{keys[2]}#{keys[3]}".chomp.to_i
-  end
-
-  def d_key
-    "#{keys[3]}#{keys[4]}".chomp.to_i
-  end
+  # # def keys
+  # #   @cryptic[:key].split("")
+  # # end
+  #
+  # def a_key
+  #   "#{@key[0]}#{@key[1]}".chomp.to_i
+  # end
+  #
+  # def b_key
+  #   "#{@key[1]}#{@key[2]}".chomp.to_i
+  # end
+  #
+  # def c_key
+  #   "#{@key[2]}#{@key[3]}".chomp.to_i
+  # end
+  #
+  # def d_key
+  #   "#{@key[3]}#{@key[4]}".chomp.to_i
+  # end
 end
