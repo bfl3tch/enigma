@@ -24,6 +24,12 @@ class Offset
   def last_four_split
     split_date[-4, 4]
   end
+ # add this test
+  def last_four_as_integers
+    last_four_split.map do |string|
+      string.to_i
+    end
+  end
 
   def full_offset
     last_four_split.join.to_i
