@@ -1,4 +1,4 @@
-require 'alphabet'
+require './lib/alphabet'
 
 class Enigma
   include Alphabet
