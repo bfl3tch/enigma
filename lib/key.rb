@@ -10,7 +10,7 @@ class Key
   end
 
   # # def keys
-  # #   @cryptic[:key].split("")
+  # #   @encrypted[:key].split("")
   # # end
   #
   # def a_key
