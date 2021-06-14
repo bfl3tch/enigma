@@ -1,4 +1,4 @@
-require 'alphabet'
+require_relative 'alphabet'
 
 class Offset
   include Alphabet
