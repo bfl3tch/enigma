@@ -1,31 +1,20 @@
-require './enigma'
-# require './key'
-# require './offset'
-# require './encryptor'
-# require './decryptor'
-# require './command_line_interface'
-#
-# #FIX FOR DECRYPTION - THIS IS ENCRYPTION
-# enigma = Enigma.new
-# handle = File.open(ARGV[0], "r")
-# incoming_text = handle.read.downcase
-# encrypted_text = incoming_text.enigma.encrypt
-#
-# writer = File.open(ARGV[1], "w")
-# writer.write(encrypted_text)
-# # writer.close
-#
-# encrypted_file = ARGV[0]
-# encrypted_file ||= './encrypted.txt'
-#
-# decrypyed_file = ARGV[1]
-# decrypted_file ||= './decrypted.txt'
-#
-# # encrypted_file = ARGV[1].nil? ? './encrypted.txt' : ARGV[1]
-# enigma = Enigma.new
-# handle = File.open(unencrypted_file, "r")
-# encrypted_text = handle.read.downcase
-# decrypted_text = incoming_text.enigma.decrypt
-# writer = File.open(encrypted_file, "w")
-# writer.write(encrypted_text)
-# writer.close
+require_relative 'alphabet'
+require_relative 'decryptor'
+require_relative 'encryptor'
+require_relative 'enigma'
+require_relative 'key'
+require_relative 'offset'
+
+encrypted_file = ARGV[0]
+encrypted_file ||= './encrypted.txt'
+decrypted_file = ARGV[1]
+decrypted_file ||= './decrypted.txt'
+
+handle = File.open(encrypted_file, "r")
+@enigma = Enigma.new
+incoming_text = handle.read.downcase
+
+encrypted_text = @enigma.decrypt(incoming_text)
+writer = File.open(decrypted_file, "w")
+writer.write(decrypted_file)
+writer.close
