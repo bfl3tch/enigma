@@ -12,10 +12,36 @@ RSpec.describe Enigma do
   end
   #
   describe 'it has a method that can' do
-    it 'can break the incoming message into fours' do
+    it 'can convert the message to fours' do
       @enigma.encrypt("hello world", "02715", "040895")
-      expected = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
+      expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
+      expect(@enigma.message_as_integers).to eq(expected)
+    end
+
+    it 'can convert the message to groups of four' do
+      @enigma.encrypt("hello world", "02715", "040895")
+      expected =  [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
       expect(@enigma.message_broken_in_fours).to eq(expected)
+
+    end
+
+    it 'can convert the message to integer equivalents' do
+      @enigma.encrypt("hello world", "02715", "040895")
+      expected = [[7, 4, 11, 11], [14, 26, 22, 14], [17, 11, 3]]
+      expect(@enigma.message_broken_in_fours_integers).to eq(expected)
+
+    end
+    # it 'can break the incoming integer-converted message into fours' do
+    #   @enigma.encrypt("hello world", "02715", "040895")
+    #   expected = [[7, 4, 11, 11], [14, 26, 22, 14], [17, 11, 3]]
+    #   expect(@enigma.message_broken_in_fours).to eq(expected)
+    #
+    # end
+
+    it 'can translate the message into numbers' do
+      @enigma.encrypt("hello world", "02715", "040895")
+      expected = [[8, 4, 12, 12], ["o", " ", "w", "o"], ["r", "l", "d"]]
+      expect(@enigma.fours_as_integers).to eq(expected)
 
     end
     it 'can encrypt something' do
