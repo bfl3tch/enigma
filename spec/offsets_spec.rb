@@ -12,13 +12,13 @@ RSpec.describe Offset do
 
     it 'has readable attributes' do
       expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
+      allow(@offset).to receive(:todays_date).and_return("140621")
 
       expect(@offset.alphabet).to eq(expected)
-
-      allow(@offset).to receive(:todays_date).and_return("140621")
       expect(@offset.date).to eq("140621")
     end
   end
+
   describe 'it has a method that' do
 
     it 'can square the days' do
@@ -51,21 +51,5 @@ RSpec.describe Offset do
 
       expect(@offset.full_offset).to eq(5641)
     end
-
-    # it 'can split that' do
-    #   allow(@offset).to receive(:todays_date).and_return("140621")
-    #
-    #   expect(@offset.offset_a).to eq(5)
-    #   expect(@offset.offset_b).to eq(6)
-    #   expect(@offset.offset_c).to eq(4)
-    #   expect(@offset.offset_d).to eq(1)
-    # end
-
-    # it 'can iterate through the last 4 to assign' do
-    #   allow(@offset).to receive(:todays_date).and_return("140621")
-    #
-    #   expect(@offset.offset_assignment).to eq(nil)
-    # end
-
   end
 end
