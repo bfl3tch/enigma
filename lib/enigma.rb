@@ -6,7 +6,6 @@ class Enigma
   def encrypt(message, key = nil, date = nil)
     key ||= Key.new.key
     date ||= Offset.new.date
-    # date ||= offset.todays_date
     @encryptor = Encryptor.new(key, date)
     @alphabet = create_alphabet
     @message = message
@@ -14,6 +13,10 @@ class Enigma
     { encryption: encrypted_message.chomp,
       key: key,
       date: date }
+  end
+
+  def encrypted_output
+    @encrypted
   end
 
   def decrypt(message, key, date)
