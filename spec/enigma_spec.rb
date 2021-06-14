@@ -10,33 +10,45 @@ RSpec.describe Enigma do
       expect(@enigma).to be_an_instance_of(Enigma)
     end
   end
-
+  #
   describe 'it has a method that can' do
-    it 'can generate a random key' do
-      expect(@enigma.key_gen).to be_a(String)
-      expect(@enigma.key_gen.length).to eq(5)
-
-      allow(@enigma).to receive(:key_gen).and_return("05555")
-      expect(@enigma.key_gen).to eq("05555")
+    it 'can convert the message to fours' do
+      @enigma.encrypt("hello world", "02715", "040895")
+      expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
+      expect(@enigma.message_as_integers).to eq(expected)
     end
 
-    it 'can calculate the offset' do
-        expect(@enigma.offset("040621")).to eq(5641)
-      end
+    it 'can convert the message to groups of four' do
+      @enigma.encrypt("hello world", "02715", "040895")
+      expected =  [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
+      expect(@enigma.message_broken_in_fours).to eq(expected)
 
+    end
+
+    it 'can convert the message to integer equivalents' do
+      @enigma.encrypt("hello world", "02715", "040895")
+      expected = [[7, 4, 11, 11], [14, 26, 22, 14], [17, 11, 3]]
+      expect(@enigma.message_broken_in_fours_integers).to eq(expected)
+
+    end
+
+    it 'can translate the message into encrypted text' do
+      @enigma.encrypt("hello world", "02715", "040895")
+      expected = ["k", "e", "d", "e", "r", " ", "o", "h", "u", "l", "w"]
+      expect(@enigma.shifted_fours).to eq(expected)
+
+    end
     it 'can encrypt something' do
+      test = @enigma.encrypt("hello world", "02715", "040895")
       expected = {
         encryption: "keder ohulw",
         key: "02715",
         date: "040895"
       }
-      test = @enigma.encrypt("hello world", "02715", "040895")
 
       expect(test[:encryption]).to eq(expected[:encryption])
       expect(test[:key]).to eq(expected[:key])
       expect(test[:date]).to eq(expected[:date])
     end
-
-
   end
 end

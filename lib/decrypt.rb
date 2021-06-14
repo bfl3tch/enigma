@@ -5,7 +5,7 @@ require './encryptor'
 require './decryptor'
 require './command_line_interface'
 
-
+#FIX FOR DECRYPTION - THIS IS ENCRYPTION
 enigma = Enigma.new
 handle = File.open(ARGV[0], "r")
 incoming_text = handle.read.downcase

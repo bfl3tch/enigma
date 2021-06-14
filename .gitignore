@@ -8,6 +8,7 @@
 *.so
 
 /coverage
+./encrypted.txt
 
 # Packages #
 ############
