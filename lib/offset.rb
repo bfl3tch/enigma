@@ -1,14 +1,18 @@
-class Offset
-  extend Alphabet
+require 'alphabet'
+require 'enigma'
 
-  attr_reader :alphabet, :offset
+class Offset
+  include Alphabet
+  include Date
+
+  attr_reader :alphabet
 
   def initialize
-    @alphabet = alphabet.create_alphabet
-    @todays_date = Date.today.strftime("%d%m%y")
+    @alphabet = create_alphabet
+    @todays_date = todays_date
   end
 
-  def offset(date = @cryptic[:date])
+  def offset(date)
     string_split = (date.to_i ** 2).to_s.split("")
     @offset = string_split[-4, 4]
     full_offset = @offset.join.to_i
