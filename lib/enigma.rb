@@ -10,10 +10,17 @@ class Enigma
     @encryptor = Encryptor.new(key, date)
     @alphabet = create_alphabet
     @message = message
-    @cryptic =
+    @encrypted =
     { encryption: encrypted_message,
       key: key,
       date: date }
+  end
+
+  def decrypt(message, key, date)
+    message = @encrypted[:encryption]
+    key = @encrypted[:key]
+    date = @encrypted[:date]
+
   end
 
   def message_as_integers
