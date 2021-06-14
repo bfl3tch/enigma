@@ -15,10 +15,13 @@ RSpec.describe Offset do
 
       expect(@offset.alphabet).to eq(expected)
 
+      allow(@offset).to receive(:todays_date).and_return("140621")
+      expect(@offset.todays_date).to eq("140621")
     end
   end
   describe 'it has a method that' do
     it 'can calculate the offset' do
+      require "pry"; binding.pry
       expect(@enigma.offset("040621")).to eq(5641)
     end
 
