@@ -1,4 +1,5 @@
 class Enigma
+  include Date
 
   def initialize
     @message = message
@@ -22,7 +23,8 @@ class Enigma
     end
 
 
-  def encrypt(message, key = nil, date = nil)
+  def encrypt(input_hash)
+    message, key = nil, date = nil)
     key ||= key.key_gen
     date ||= offset.todays_date
     @cryptic = { encryption: message,
