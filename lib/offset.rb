@@ -1,20 +1,30 @@
 require 'alphabet'
 require 'enigma'
+require 'date'
 
 class Offset
   include Alphabet
-  include Date
+  attr_reader :alphabet, :date
 
-  attr_reader :alphabet
-
-  def initialize
+  def initialize(date = todays_date)
+    @date = date
     @alphabet = create_alphabet
-    @todays_date = todays_date
   end
 
-  def offset(date)
-    string_split = (date.to_i ** 2).to_s.split("")
-    @offset = string_split[-4, 4]
+  def todays_date
+    Date.today.strftime("%d%m%y")
+  end
+
+  def square_date
+    (date.to_i ** 2)
+  end
+
+  def split_date
+    square_date.to_s.split("")
+  end
+
+  def full_offset
+    @offset = split_date[-4, 4]
     full_offset = @offset.join.to_i
   end
 
