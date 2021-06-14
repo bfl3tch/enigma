@@ -10,8 +10,14 @@ RSpec.describe Enigma do
       expect(@enigma).to be_an_instance_of(Enigma)
     end
   end
-
+  #
   describe 'it has a method that can' do
+    it 'can break the incoming message into fours' do
+      @enigma.encrypt("hello world", "02715", "040895")
+      expected = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
+      expect(@enigma.message_broken_in_fours).to eq(expected)
+
+    end
     it 'can encrypt something' do
       test = @enigma.encrypt("hello world", "02715", "040895")
       expected = {
