@@ -2,29 +2,6 @@ require 'alphabet'
 class Enigma
   include Alphabet
 
-  def initialize
-  end
-
-  # def a_shift
-  #   (offset_a + a_key) % 27
-  # end
-  #
-  # def b_shift
-  #   (offset_b + b_key) % 27
-  # end
-  #
-  # def c_shift
-  #   (offset_c + c_key) % 27
-  # end
-  #
-  # def d_shift
-  #   (offset_d + d_key) % 27
-  # end
-  #
-  # def full_shift
-  #
-  # end
-
   def encrypt(message, key = nil, date = nil)
     key ||= key.key_gen
     date ||= offset.todays_date
@@ -37,11 +14,13 @@ class Enigma
   end
 
   def encrypted_message
+    shifted = []
     alphabet =  create_alphabet
     alphab_with_i = alphabet_with_indexes
     ready_to_shift = @message.split("")
-    # require "pry"; binding.pry
-    shifted = []
+    test = ready_to_shift.slice(4)
+require "pry"; binding.pry
+
     ready_to_shift.map do |letter|
 
 
