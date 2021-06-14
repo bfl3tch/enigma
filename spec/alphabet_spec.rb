@@ -4,11 +4,11 @@ RSpec.describe Alphabet do
   before(:each) do
     @alphabet = Alphabet.new
   end
-  describe 'instantiation' do
-    it 'creates a new object' do
-      expect(@alphabet).to be_an_instance_of(Alphabet)
-    end
-  end
+  # describe 'instantiation' do
+  #   it 'creates a new object' do
+  #     expect(@alphabet).to be_an_instance_of(Alphabet)
+  #   end
+  # end
 
   describe 'it has a method that' do
     it 'can make a regular alphabet with a space character' do
