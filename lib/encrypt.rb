@@ -12,9 +12,8 @@ encrypted_file ||= './encrypted.txt'
 
 handle = File.open(unencrypted_file, "r")
 @enigma = Enigma.new
-# key = key.key_gen
-# date = offset.date
 incoming_text = handle.read.downcase
+
 encrypted_text = @enigma.encrypt(incoming_text)
 writer = File.open(encrypted_file, "w")
 writer.write(encrypted_text)
