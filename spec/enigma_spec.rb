@@ -10,7 +10,7 @@ RSpec.describe Enigma do
       expect(@enigma).to be_an_instance_of(Enigma)
     end
   end
-  
+
   describe 'it has a method that can' do
     it 'can generate 4 individual shifts' do
       @enigma.offset("040621")
@@ -22,6 +22,12 @@ RSpec.describe Enigma do
       expect(@enigma.d_shift).to eq(16)
 
     end
+
+    # it 'can calculate the key' do
+    #   @key.encrypt("hello world", "02715", "040895")
+    #
+    #   expect(@key.keys).to eq(["0", "2", "7", "1", "5"])
+    # end
 
     it 'can encrypt something' do
       @enigma.offset("040621")
