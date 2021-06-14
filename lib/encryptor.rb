@@ -18,7 +18,11 @@ class Encryptor
     key_split_integer = split_key.map { |key| key.to_i }
   end
 
-  def calculate_total
+  def split_keys_into_pairs
+    keys_as_ints.join.chars.each_cons(2).map { |pair| pair.join.to_i }
+  end
+
+  def keys_plus_offsets
     
   end
 
