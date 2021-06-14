@@ -16,22 +16,37 @@ RSpec.describe Offset do
       expect(@offset.alphabet).to eq(expected)
 
       allow(@offset).to receive(:todays_date).and_return("140621")
-      expect(@offset.todays_date).to eq("140621")
+      expect(@offset.date).to eq("140621")
     end
   end
   describe 'it has a method that' do
-    it 'can calculate the offset' do
-      require "pry"; binding.pry
-      expect(@enigma.offset("040621")).to eq(5641)
+
+    it 'can square the days' do
+      allow(@offset).to receive(:todays_date).and_return("140621")
+
+      expect(@offset.square_date).to eq(19774265641)
     end
 
-    it 'can calculate the individual offsets' do
-      @enigma.offset("040621")
+    it 'can use the last 4 digits' do
+      allow(@offset).to receive(:todays_date).and_return("140621")
 
-      expect(@enigma.offset_a).to eq(5)
-      expect(@enigma.offset_b).to eq(6)
-      expect(@enigma.offset_c).to eq(4)
-      expect(@enigma.offset_d).to eq(1)
+      expect(@offset.full_offset).to eq(5641)
     end
+
+    # it 'can split that' do
+    #   allow(@offset).to receive(:todays_date).and_return("140621")
+    #
+    #   expect(@offset.offset_a).to eq(5)
+    #   expect(@offset.offset_b).to eq(6)
+    #   expect(@offset.offset_c).to eq(4)
+    #   expect(@offset.offset_d).to eq(1)
+    # end
+
+    # it 'can iterate through the last 4 to assign' do
+    #   allow(@offset).to receive(:todays_date).and_return("140621")
+    #
+    #   expect(@offset.offset_assignment).to eq(nil)
+    # end
+
   end
 end
