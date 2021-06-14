@@ -18,6 +18,15 @@ class Enigma
     rand(99999).to_s.rjust(5, "0")
   end
 
+  def encrypt(message, key = nil, date = nil)
+    key ||= key_gen
+    date ||= todays_date
+    @message = message
+    @hash = { encryption: message,
+      key: key,
+      date: date }
+  end
+
   def offset(date = @hash[:date])
     string_split = (date.to_i ** 2).to_s.split("")
     @offset = string_split[-4, 4]
@@ -38,15 +47,6 @@ class Enigma
 
   def offset_d
     @offset[3].to_i
-  end
-
-  def encrypt(message, key = nil, date = nil)
-    key ||= key_gen
-    date ||= todays_date
-    @message = message
-    @hash = { encryption: message,
-      key: key,
-      date: date }
   end
 
   def keys
@@ -94,15 +94,18 @@ class Enigma
     #apply d shift to each 4th, 8th, 12th etc chars etc
     # alphabet = alphabet_with_indexes
     shifted = []
+    require "pry"; binding.pry
+
     ready_to_shift.map do |letter|
+    alphabet = alphabet.alphabet_with_indexes
+
+
       # alphabet.rotate(a_shift)
       # shifted << letter
       # next shifted << letter.b_shift
       # next shifted << letter.c_shift
       # next shifted << letter.d_shift
 
-
-      require "pry"; binding.pry
     end
     #bring shifted messages back together
     #join messages, return that joined message
