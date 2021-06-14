@@ -5,7 +5,7 @@ RSpec.describe Encryptor do
     @encryptor = Encryptor.new("02715", "040895")
   end
 
-  describe 'intantiation' do
+  describe 'instantiation' do
     it 'creates a new object' do
       expect(@encryptor).to be_an_instance_of(Encryptor)
     end
@@ -13,8 +13,7 @@ RSpec.describe Encryptor do
     it 'has readable attributes' do
       expect(@encryptor.key).to eq("02715")
       expect(@encryptor.date).to eq( "040895")
-      expect(@encryptor.offset).to eq("Encryptor")
-
+      expect(@encryptor.offset.date).to eq("040895")
     end
   end
 
