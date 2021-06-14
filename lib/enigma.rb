@@ -1,40 +1,37 @@
-require './alphabet'
 class Enigma
 
-
   def initialize
-
+    @message = message
   end
 
 
+    def a_shift
+      (offset_a + a_key) % 27
+    end
+
+    def b_shift
+      (offset_b + b_key) % 27
+    end
+
+    def c_shift
+      (offset_c + c_key) % 27
+    end
+
+    def d_shift
+      (offset_d + d_key) % 27
+    end
 
 
   def encrypt(message, key = nil, date = nil)
-    key ||= key_gen
-    date ||= todays_date
-    @message = message
-    @hash = { encryption: message,
+    key ||= key.key_gen
+    date ||= offset.todays_date
+    @cryptic = { encryption: message,
       key: key,
       date: date }
   end
 
 
 
-  def a_shift
-    (offset_a + a_key) % 27
-  end
-
-  def b_shift
-    (offset_b + b_key) % 27
-  end
-
-  def c_shift
-    (offset_c + c_key) % 27
-  end
-
-  def d_shift
-    (offset_d + d_key) % 27
-  end
 
   def encrypted_message
     ready_to_shift = @message.split("")
