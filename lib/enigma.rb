@@ -11,7 +11,7 @@ class Enigma
     @alphabet = create_alphabet
     @message = message
     @encrypted =
-    { encryption: encrypted_message,
+    { encryption: encrypted_message.chomp,
       key: key,
       date: date }
   end
