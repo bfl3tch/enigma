@@ -11,7 +11,7 @@ class Enigma
     @alphabet = create_alphabet
     @message = message
     @cryptic =
-    { encryption: message,
+    { encryption: encrypted_message,
       key: key,
       date: date }
   end
@@ -47,61 +47,22 @@ class Enigma
     foured_integers
   end
 
-def fours_as_integers
-  shifted_integers = []
-  message_broken_in_fours.each do |fourty|
-    fourty.each.with_index do |char, index|
-      if char.is_a?(Integer)==false
-        shifted_integers << char
-      else
-        char += @encryptor.full_shift[index]
-        shifted_integers << @alphabet[char]
+  def shifted_fours
+    shifted = []
+    message_broken_in_fours_integers.each do |fourty|
+      fourty.each.with_index do |char, index|
+        if char.is_a?(Integer)==false
+          shifted << char
+        else
+          char += (@encryptor.full_shift[index] - 27)
+          shifted << @alphabet[char]
+          end
         end
       end
-    end
-    shifted_integers
+    shifted
   end
-  #   integered_message = []
-  #   message_broken_in_fours.map do |four|
-  #     four.each.with_index do |letternum, index|
-  #       require "pry"; binding.pry
-  #       if letternum.is_a?(Integer) == false
-  #         integered_ message << letternum
-  #       else
-  #       end
-  #
-  #     end
-  #   end
-  # end
 
   def encrypted_message
-    shifted = []
-    alphabet = create_alphabet
-    alphab_with_i = alphabet_with_indexes
-    ready_to_shift = @message.split("")
-    foursome = ready_to_shift.each_slice(4).map do |four|
-      shifted << four
-    end
+    shifted_fours.join
   end
 end
-    # shifted.map do |four|
-    #   # require "pry"; binding.pry
-    #
-    #   four.encryptor.full_shift
-# end
-    # ready_to_shift.map do |letter|
-    # end
-
-
-
-
-      # alphabet.rotate(a_shift)
-      # shifted << letter
-      # next shifted << letter.b_shift
-      # next shifted << letter.c_shift
-      # next shifted << letter.d_shift
-
-    # end
-    #bring shifted messages back together
-    #join messages, return that joined message
-    # p "hello world!"
