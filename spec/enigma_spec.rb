@@ -12,16 +12,16 @@ RSpec.describe Enigma do
   end
 
   describe 'it has a method that can' do
-    it 'can generate 4 individual shifts' do
-      @enigma.offset("040621")
-      @enigma.encrypt("hello world", "02715", "040621")
-
-      expect(@enigma.a_shift).to eq(7)
-      expect(@enigma.b_shift).to eq(6)
-      expect(@enigma.c_shift).to eq(21)
-      expect(@enigma.d_shift).to eq(16)
-
-    end
+    # it 'can generate 4 individual shifts' do
+    #   @enigma.offset("040621")
+    #   @enigma.encrypt("hello world", "02715", "040621")
+    #
+    #   expect(@enigma.a_shift).to eq(7)
+    #   expect(@enigma.b_shift).to eq(6)
+    #   expect(@enigma.c_shift).to eq(21)
+    #   expect(@enigma.d_shift).to eq(16)
+    #
+    # end
 
     # it 'can calculate the key' do
     #   @key.encrypt("hello world", "02715", "040895")
@@ -30,7 +30,6 @@ RSpec.describe Enigma do
     # end
 
     it 'can encrypt something' do
-      @enigma.offset("040621")
       test = @enigma.encrypt("hello world", "02715", "040895")
       expected = {
         encryption: "keder ohulw",
