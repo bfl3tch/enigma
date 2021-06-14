@@ -1,5 +1,6 @@
-require 'alphabet'
+require './alphabet'
 class Enigma
+
 
   def initialize
 
@@ -43,7 +44,7 @@ class Enigma
     key ||= key_gen
     date ||= todays_date
     @message = message
-    @hash = { encryption: encrypted_message,
+    @hash = { encryption: message,
       key: key,
       date: date }
   end
@@ -69,27 +70,43 @@ class Enigma
   end
 
   def a_shift
-    offset_a + a_key
+    (offset_a + a_key) % 27
   end
 
   def b_shift
-    offset_b + b_key
+    (offset_b + b_key) % 27
   end
 
   def c_shift
-    offset_c + c_key
+    (offset_c + c_key) % 27
   end
 
   def d_shift
-    offset_d + d_key
+    (offset_d + d_key) % 27
   end
 
   def encrypted_message
-    #split message up into individual characters
     ready_to_shift = @message.split("")
-    #apply shifts to each 4th character
-    ready_to_shift.each do |letter|
-      letter.
+    #apply a shift to each 1st, 5th, 9th etc chars etc
+      #how to assign individual shifts?
+    #apply b shift to each 2nd, 6th, 10th etc chars etc
+    #apply c shift to each 3rd, 7th, 11th etc chars etc
+    #apply d shift to each 4th, 8th, 12th etc chars etc
+    # alphabet = alphabet_with_indexes
+    shifted = []
+    ready_to_shift.map do |letter|
+      # alphabet.rotate(a_shift)
+      # shifted << letter
+      # next shifted << letter.b_shift
+      # next shifted << letter.c_shift
+      # next shifted << letter.d_shift
+
+
+      require "pry"; binding.pry
+    end
+    #bring shifted messages back together
+    #join messages, return that joined message
+
   end
 
 end
