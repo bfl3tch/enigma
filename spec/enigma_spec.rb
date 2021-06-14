@@ -33,6 +33,11 @@ RSpec.describe Enigma do
       expect(@enigma.offset_d).to eq(1)
     end
 
+    it 'can calculate the key' do
+      @enigma.encrypt("hello world", "02715", "040895")
+
+      expect(@enigma.keys).to eq(["0", "2", "7", "1", "5"])
+    end
     it 'can calculate the individual keys' do
       @enigma.encrypt("hello world", "02715", "040895")
 
@@ -70,7 +75,5 @@ RSpec.describe Enigma do
       expect(@c_key).to eq(34)
       expect(@d_key).to eq(45)
     end
-
-
   end
 end
