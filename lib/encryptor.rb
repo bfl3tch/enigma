@@ -9,10 +9,26 @@ class Encryptor
     @offset = Offset.new(date)
   end
 
-  def full_shift
-    final_offset = @offset.full_offset
+  def final_offset
+    @offset.full_offset
+  end
+
+  def keys_as_ints
     split_key = @key.split("")
-    shifty = split_key.map_with_index do |number, index|
+    key_split_integer = split_key.map { |key| key.to_i }
+  end
+
+  def calculate_total
+    
+  end
+
+  def full_shift
+    final_offset
+      4.times do key_split_integer.first(2)
+        key_split_integer.rotate(1)
+      end
+    shifty = key_split_integer.each_with_index.map do |number, index|
+      require "pry"; binding.pry
       number + final_offset[index]
     end
     shifty.map do |num|
