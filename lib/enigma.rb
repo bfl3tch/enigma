@@ -1,10 +1,8 @@
 class Enigma
-  include Date
 
   def initialize
     @message = message
   end
-
 
   def a_shift
     (offset_a + a_key) % 27
