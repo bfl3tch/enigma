@@ -4,10 +4,15 @@ RSpec.describe Key do
   before(:each) do
     @key = Key.new
   end
-  
+
   describe 'instantiation' do
     it 'creates a key' do
-    expect(key).to be_an_instance_of(Key)
+    expect(@key).to be_an_instance_of(Key)
+    end
+
+    it 'has readable attributes' do
+      expect(@key.key).to be_a(String)
+      expect(@key.key.length).to eq(5)
     end
   end
 
@@ -20,19 +25,14 @@ RSpec.describe Key do
       expect(@key.key_gen).to eq("05555")
     end
 
-    it 'can calculate the key' do
-      @key.encrypt("hello world", "02715", "040895")
 
-      expect(@key.keys).to eq(["0", "2", "7", "1", "5"])
-    end
-
-    it 'can calculate the individual keys' do
-      @key.encrypt("hello world", "02715", "040895")
-
-      expect(@key.a_key).to eq(2)
-      expect(@key.b_key).to eq(27)
-      expect(@key.c_key).to eq(71)
-      expect(@key.d_key).to eq(15)
-    end
+    # it 'can calculate the individual keys' do
+    #   tester = Key.new("55555")
+    #
+    #   expect(tester.a_key).to eq(41)
+    #   expect(tester.b_key).to eq(12)
+    #   expect(tester.c_key).to eq(21)
+    #   expect(tester.d_key).to eq(15)
+    # end
   end
 end
