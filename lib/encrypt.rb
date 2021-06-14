@@ -18,3 +18,5 @@ encrypted_text = @enigma.encrypt(incoming_text)
 writer = File.open(encrypted_file, "w")
 writer.write(encrypted_text)
 writer.close
+
+puts "Created '#{encrypted_file}' with the key #{encrypted_text[:key]} and date #{encrypted_text[:date]}"
