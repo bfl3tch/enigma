@@ -1,5 +1,4 @@
 require 'alphabet'
-require 'enigma'
 
 class Offset
   include Alphabet
@@ -34,7 +33,7 @@ class Offset
   #   full_offset.each do |offset|
   #     require "pry"; binding.pry
   #   end
-  # 
+  #
   # end
 
   # def offset_a
