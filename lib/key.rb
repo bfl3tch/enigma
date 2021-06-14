@@ -1,16 +1,16 @@
-class Keys
-  attr_reader :key
-  
-  def initialize(key = key_gen)
+class Key
+  attr_reader :key, :keys
+
+  def initialize
     @key = key
   end
 
   def key_gen
-    rand(99999).to_s.rjust(5, "0")
+    @key = rand(99999).to_s.rjust(5, "0")
   end
 
   def keys
-    @hash[:key].split("")
+    @cryptic[:key].split("")
   end
 
   def a_key
