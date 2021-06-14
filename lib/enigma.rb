@@ -4,10 +4,10 @@ class Enigma
   include Alphabet
 
   def encrypt(message, key = nil, date = nil)
-    key ||= key.key_gen
-    date ||= offset.todays_date
+    key ||= Key.new.key
+    date ||= Offset.new.date
+    # date ||= offset.todays_date
     @encryptor = Encryptor.new(key, date)
-    @offset = Offset.new(date)
     @alphabet = create_alphabet
     @message = message
     @cryptic =
