@@ -1,7 +1,8 @@
+require 'alphabet'
 class Enigma
+  include Alphabet
 
   def initialize
-    @message = message
   end
 
   def a_shift
@@ -20,10 +21,15 @@ class Enigma
     (offset_d + d_key) % 27
   end
 
+  def full_shift
+
+  end
 
   def encrypt(message, key = nil, date = nil)
-    @key ||= key.key_gen
+    key ||= key.key_gen
     date ||= todays_date
+    offset = Offset.new(date)
+    @message = message
     @cryptic =
     { encryption: encrypted_message,
       key: key,
@@ -34,6 +40,7 @@ class Enigma
 
 
   def encrypted_message
+    alphabet = alphabet_with_indexes
     ready_to_shift = @message.split("")
     #apply a shift to each 1st, 5th, 9th etc chars etc
       #how to assign individual shifts?
@@ -42,10 +49,8 @@ class Enigma
     #apply d shift to each 4th, 8th, 12th etc chars etc
     # alphabet = alphabet_with_indexes
     shifted = []
-    require "pry"; binding.pry
-
     ready_to_shift.map do |letter|
-    alphabet = alphabet.alphabet_with_indexes
+
 
 
       # alphabet.rotate(a_shift)
