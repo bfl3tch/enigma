@@ -22,13 +22,12 @@ encrypted_hash = @enigma.encrypt(incoming_text, key, date)
 @encrypted_text = encrypted_hash[:encryption]
 writer = File.open(encrypted_file, "w")
 
-@display_hash = {
-    decryption: @encrypted_text,
-    key: key,
-    date: date
-
-}
-writer.write(@display_hash)
+encrypted_hash[:encryption]
+@disp_hash = {  decryption: @encrypted_text,
+                key: key,
+                date: date
+              }
+writer.write(@encrypted_text)
 writer.close
 
 puts "Created '#{encrypted_file}' with the key #{key} and date #{date}"
