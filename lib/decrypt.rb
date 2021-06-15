@@ -13,18 +13,19 @@ decrypted_file ||= './decrypted.txt'
 key = ARGV[2]
 date = ARGV[3]
 date ||= Date.today.strftime("%d%m%y")
+@enigma = Enigma.new
 
 handle = File.open(encrypted_file, "r")
-incoming_text = handle.read.downcase
+encrypted = handle.read.downcase.chomp
 handle.close
-
-@enigma = Enigma.new
-@decryptor = Decryptor.new(incoming_text[:encryption], key, date)
-decrypted_text = @enigma.decrypt(encrypted_file, key, date)[:decryption]
-# decrypted_text = @enigma.decrypt(incoming_text, @key, @date)
+hash = Hash.new
+hash[encrypted]
+# decrypted_hash = @enigma.decrypted_output
+decrypted_output =
+decrypted_text = @enigma.decrypt(ENCRYPTED_TEXT_FROM_FILE, key, date)
 
 writer = File.open(decrypted_file, "w")
 writer.write(decrypted_text)
 writer.close
 
-puts "Created '#{decrypted_file}' with the key #{key} and date #{decrypted_text[:date]}"
+puts "Created '#{decrypted_file}' with the key #{key} and date #{date}"
