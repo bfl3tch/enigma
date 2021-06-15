@@ -22,7 +22,6 @@ encrypted = handle.read.downcase.chomp
 encrypted = JSON.parse(encrypted.gsub('=>', ':'))
 handle.close
 
-decrypted_hash = @enigma.decrypted_output
 @decrypted_text = @enigma.decrypt(encrypted["decryption"], key, date)
 @display_hash = { decryption: @decrypted_text,
                   key: key,
@@ -30,7 +29,7 @@ decrypted_hash = @enigma.decrypted_output
                 }
 
 writer = File.open(decrypted_file, "w")
-writer.write(@display_hash)
+writer.write(@display_hash[:decryption])
 writer.close
 
 puts "Created '#{decrypted_file}' with the key #{key} and date #{date}"
