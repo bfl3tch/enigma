@@ -12,7 +12,7 @@ RSpec.describe Enigma do
   end
   #
   describe 'it has a method that can' do
-    it 'can convert the message to fours' do
+    it 'can convert the message letters to integer values' do
       @enigma.encrypt("hello world", "02715", "040895")
       expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
       expect(@enigma.message_as_integers).to eq(expected)
@@ -22,7 +22,6 @@ RSpec.describe Enigma do
       @enigma.encrypt("hello world", "02715", "040895")
       expected =  [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
       expect(@enigma.message_broken_in_fours).to eq(expected)
-
     end
 
     it 'can convert the message to integer equivalents' do
@@ -55,12 +54,11 @@ RSpec.describe Enigma do
       expect(test[:date]).to eq(expected[:date])
     end
 
-    xit 'can decrypt something' do
+    it 'can decrypt something' do
       @enigma.encrypt("hello world!", "02715", "040895")
       expect(@enigma.encrypted_output[:date]).to eq("040895")
       expect(@enigma.encrypted_output[:message]).to eq("hello world!")
       expect(@enigma.encrypted_output[:key]).to eq("02715")
-
     end
   end
 end
