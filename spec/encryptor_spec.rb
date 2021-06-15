@@ -6,7 +6,8 @@ RSpec.describe Encryptor do
   end
 
   describe 'instantiation' do
-    it 'creates a new object' do
+
+    it 'creates an encryptor' do
       expect(@encryptor).to be_an_instance_of(Encryptor)
     end
 
@@ -18,6 +19,7 @@ RSpec.describe Encryptor do
   end
 
   describe 'it has a method that' do
+
     it 'can determine the final offset' do
     expect(@encryptor.final_offset).to eq(1025)
     end

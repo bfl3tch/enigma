@@ -6,8 +6,9 @@ RSpec.describe Offset do
   end
 
   describe 'instantiation' do
+
     it 'creates an offset' do
-    expect(@offset).to be_an_instance_of(Offset)
+      expect(@offset).to be_an_instance_of(Offset)
     end
 
     it 'has readable attributes' do
@@ -21,32 +22,32 @@ RSpec.describe Offset do
 
   describe 'it has a method that' do
 
-    it 'can square the days' do
+    it 'can square the integers of the date in the "ddmmyy" format' do
       allow(@offset).to receive(:todays_date).and_return("140621")
 
       expect(@offset.square_date).to eq(22686685641)
     end
 
-    it 'can split up the date' do
+    it 'can split the squared integers into individual strings' do
       allow(@offset).to receive(:todays_date).and_return("140621")
       expected = ["2", "2", "6", "8", "6", "6", "8", "5", "6", "4", "1"]
 
       expect(@offset.split_date).to eq(expected)
     end
 
-    it 'can break off the last four' do
+    it 'can break off the last four strings' do
       allow(@offset).to receive(:todays_date).and_return("140621")
 
       expect(@offset.last_four_split).to eq(["5", "6", "4", "1"])
     end
 
-    it 'can show the offset as integers' do
+    it 'can convert the strings back to 4 usable integers' do
       allow(@offset).to receive(:todays_date).and_return("140621")
 
       expect(@offset.last_four_as_integers).to eq([5,6,4,1])
     end
 
-    it 'can use the last 4 digits' do
+    it 'can join the 4 integers to create the full offset' do
       allow(@offset).to receive(:todays_date).and_return("140621")
 
       expect(@offset.full_offset).to eq(5641)
