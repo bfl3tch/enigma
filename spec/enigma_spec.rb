@@ -43,9 +43,9 @@ RSpec.describe Enigma do
       expect(@enigma.encrypted_output).to eq({:date=>"040895", :encryption=>"keder ohulw", :key=>"02715"})
     end
     it 'can encrypt something' do
-      test = @enigma.encrypt("hello world", "02715", "040895")
+      test = @enigma.encrypt("hello world!", "02715", "040895")
       expected = {
-        encryption: "keder ohulw",
+        encryption: "keder ohulw!",
         key: "02715",
         date: "040895"
       }
@@ -55,9 +55,11 @@ RSpec.describe Enigma do
       expect(test[:date]).to eq(expected[:date])
     end
 
-    it 'can decrypt something' do
-      @enigma.encrypt("hello world", "02715", "040895")
+    xit 'can decrypt something' do
+      @enigma.encrypt("hello world!", "02715", "040895")
       expect(@enigma.encrypted_output[:date]).to eq("040895")
+      expect(@enigma.encrypted_output[:message]).to eq("hello world!")
+      expect(@enigma.encrypted_output[:key]).to eq("02715")
 
     end
   end
