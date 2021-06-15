@@ -9,8 +9,6 @@ class Enigma
     end
 
   def encrypt(message, key = Key.new.key_gen, date = Offset.new.date)
-    # key ||= Key.new.key
-    # date ||= Offset.new.date
     @encryptor = Encryptor.new(key, date)
     @alphabet = create_alphabet
     @message = message
@@ -89,7 +87,6 @@ class Enigma
   end
 
   def encrypted_message
-    # require "pry"; binding.pry
     shifted_fours.join
   end
 

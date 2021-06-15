@@ -6,7 +6,6 @@ require_relative 'key'
 require_relative 'offset'
 require 'json'
 
-
 encrypted_file = ARGV[0]
 encrypted_file ||= './encrypted.txt'
 decrypted_file = ARGV[1]
