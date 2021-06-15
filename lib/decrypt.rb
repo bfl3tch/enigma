@@ -10,21 +10,21 @@ encrypted_file ||= './encrypted.txt'
 decrypted_file = ARGV[1]
 decrypted_file ||= './decrypted.txt'
 
-@key = ARGV[2]
-@date = ARGV[3]
-@date ||= Date.today.strftime("%d%m%y")
+key = ARGV[2]
+date = ARGV[3]
+date ||= Date.today.strftime("%d%m%y")
 
 handle = File.open(encrypted_file, "r")
 incoming_text = handle.read.downcase
 handle.close
 
 @enigma = Enigma.new
-@decryptor = Decryptor.new(incoming_text, @key, @date)
-
-decrypted_text = @enigma.decrypt(incoming_text, @key, @date)
+@decryptor = Decryptor.new(incoming_text[:encryption], key, date)
+decrypted_text = @enigma.decrypt(encrypted_file, key, date)[:decryption]
+# decrypted_text = @enigma.decrypt(incoming_text, @key, @date)
 
 writer = File.open(decrypted_file, "w")
-writer.write(decrypted_file)
+writer.write(decrypted_text)
 writer.close
 
-puts "Created '#{decrypted_file}' with the key #{decrypted_text[:key]} and date #{decrypted_text[:date]}"
+puts "Created '#{decrypted_file}' with the key #{key} and date #{decrypted_text[:date]}"

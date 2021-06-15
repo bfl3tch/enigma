@@ -1,8 +1,10 @@
+require_relative 'enigma'
+
 class Encryptor
   include Alphabet
   attr_reader :key, :date, :offset
 
-  def initialize(key, date)
+  def initialize(key = enigma.encrypt.key, date = enigma.encrypted_output[:date])
     @key = key
     @date = date
     @offset = Offset.new(date)

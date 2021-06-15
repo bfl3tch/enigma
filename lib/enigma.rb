@@ -4,12 +4,13 @@ require_relative 'decryptor'
 class Enigma
   include Alphabet
 
-  def encrypt(message, key = nil, date = nil)
-    key ||= Key.new.key
-    date ||= Offset.new.date
+  def encrypt(message, key = Key.new.key_gen, date = Offset.new.date)
+    # key ||= Key.new.key
+    # date ||= Offset.new.date
     @encryptor = Encryptor.new(key, date)
     @alphabet = create_alphabet
     @message = message
+    @key = key
     @encrypted =
     { encryption: encrypted_message.chomp,
       key: key,
