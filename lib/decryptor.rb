@@ -78,13 +78,13 @@ class Decryptor
 
   def shifted_fours
     shifted = []
-    message_broken_in_fours_integers.each do |fourty|
-      fourty.each.with_index do |char, index|
-        if char.is_a?(Integer)==false
+    message_broken_in_fours_integers.each do |foursome|
+      foursome.each.with_index do |char, index|
+        if char.kind_of?(Integer) == false
           shifted << char
         else
           char -= (calculate_shift[index])
-          shifted << @alphabet[char]
+            shifted << @alphabet[char]
           end
         end
       end

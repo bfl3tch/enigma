@@ -44,26 +44,31 @@ RSpec.describe Decryptor do
 
     it 'can split the encrypted message to integers' do
       expected = [10, 4, 3, 4, 17, 26, 14, 7, 20, 11, 22, "!"]
+
       expect(@decryptor.message_as_integers).to eq(expected)
     end
 
     it 'can split the encrypyted integers-message to fours' do
       expected = [[10, 4, 3, 4], [17, 26, 14, 7], [20, 11, 22, "!"]]
+
       expect(@decryptor.message_broken_in_fours_integers).to eq(expected)
     end
 
     it 'can convert that message to respective string values' do
       expected = [["k", "e", "d", "e"], ["r", " ", "o", "h"], ["u", "l", "w", "!"]]
+
       expect(@decryptor.message_broken_in_fours).to eq(expected)
     end
 
     it 'can apply the shift to the encrypted integer message as fours' do
       expected = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d", "!"]
+
       expect(@decryptor.shifted_fours).to eq(expected)
     end
 
     it 'can join that separated message into the expected output format' do
       expected = "hello world!"
+      
       expect(@decryptor.joiner).to eq(expected)
     end
   end
