@@ -1,5 +1,4 @@
 require_relative 'alphabet'
-require_relative 'decryptor'
 require_relative 'encryptor'
 require_relative 'enigma'
 require_relative 'key'
@@ -13,7 +12,8 @@ encrypted_file ||= './encrypted.txt'
 handle = File.open(unencrypted_file, "r")
 @enigma = Enigma.new
 incoming_text = handle.read.downcase
-
+@key = Key.new
+key = @key
 encrypted_text = @enigma.encrypt(incoming_text)
 writer = File.open(encrypted_file, "w")
 writer.write(encrypted_text)

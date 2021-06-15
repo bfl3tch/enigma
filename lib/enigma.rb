@@ -19,12 +19,13 @@ class Enigma
   def encrypted_output
     @encrypted
   end
-
-  def decrypt(message = enigma.encrypted_output[:encryption], key = enigma.encrypted_output[:key], date = enigma.encrypted_output[:date])
-    @decryptor = Decryptor.new(message, key, date)
+# encrypted[:encryption]
+  def decrypt(message, key, date = Date.today.strftime("%d%m%y"))
     @message = message
     @key = key
     @date = date
+    @decryptor = Decryptor.new(message, key, date)
+
     @decrypted =  { decryption: decrypted_message,
                     key: key,
                     date: date
