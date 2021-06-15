@@ -19,7 +19,9 @@ class Encryptor
 
   def keys_as_ints
     split_key = @key.split("")
-    key_split_integer = split_key.map { |key| key.to_i }
+    key_split_integer = split_key.map do |key|
+      key.to_i
+      end 
   end
 
   def split_keys_into_pairs
