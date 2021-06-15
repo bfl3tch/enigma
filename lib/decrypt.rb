@@ -4,6 +4,7 @@ require_relative 'encryptor'
 require_relative 'enigma'
 require_relative 'key'
 require_relative 'offset'
+require 'json'
 
 
 encrypted_file = ARGV[0]
@@ -18,10 +19,11 @@ date ||= Date.today.strftime("%d%m%y")
 
 handle = File.open(encrypted_file, "r")
 encrypted = handle.read.downcase.chomp
+encrypted = JSON.parse(encrypted.gsub('=>', ':'))
 handle.close
 
 decrypted_hash = @enigma.decrypted_output
-@decrypted_text = @enigma.decrypt(encrypted, key, date)[:decryption]
+@decrypted_text = @enigma.decrypt(encrypted["decryption"], key, date)
 @display_hash = { decryption: @decrypted_text,
                   key: key,
                   date: date
