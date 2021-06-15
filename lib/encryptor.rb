@@ -1,6 +1,5 @@
 class Encryptor
   include Alphabet
-  #make sure to test all module methods
   attr_reader :key, :date, :offset
 
   def initialize(key, date)
@@ -21,7 +20,7 @@ class Encryptor
     split_key = @key.split("")
     key_split_integer = split_key.map do |key|
       key.to_i
-      end 
+    end
   end
 
   def split_keys_into_pairs
