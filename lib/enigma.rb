@@ -1,4 +1,5 @@
 require './lib/alphabet'
+require_relative 'decryptor'
 
 class Enigma
   include Alphabet
@@ -19,14 +20,19 @@ class Enigma
     @encrypted
   end
 
-  def decrypt(message, key, date)
-    message = @encrypted[:encryption]
-    key = @encrypted[:key]
-    date = @encrypted[:date]
+  def decrypt(message = enigma.encrypted_output[:encryption], key = enigma.encrypted_output[:key], date = enigma.encrypted_output[:date])
+    @message = message
+    @key = key
+    @date = date
+    @decryptor = Decryptor.new(message, key, date)
     @decrypted =
     { decryption: decrypted_message,
       key: key,
       date: date }
+  end
+
+  def decrypted_output
+    @decrypted
   end
 
   def message_as_integers
@@ -80,6 +86,6 @@ class Enigma
   end
 
   def decrypted_message
-    # encrypted_message
+    @decryptor.joiner
   end
 end
