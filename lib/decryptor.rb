@@ -13,6 +13,13 @@ class Decryptor
     @offset = Offset.new(date)
   end
 
+  def calcuate_offset(date)
+    date = @date
+    @offset.full_offset
+  end
+
+
+
   # def final_offset
   #   @offset.full_offset
   # end
