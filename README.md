@@ -47,7 +47,7 @@ Learning goals and areas of focus consisted of:
 
 - The best way to get started is to navigate into the `enigma` directory, open the `message.txt` file, and type out a message that you want encrypted.  Save the file.
 
-- Next, still in your `enigma` directory, in your terminal, navigate into the `enigma` directory and run the following command in terminal to encrypt a message:  `ruby ./lib/encrypt.rb message.txt encrypted.txt`.  This generates an encrypted message along with a random key to access it, along with today's date.  
+- Next, still in your `enigma` directory within terminal, run the following command to encrypt a message:  `ruby ./lib/encrypt.rb message.txt encrypted.txt`.  This generates an encrypted message along with a random key to access it, along with today's date.  
 
 - You may specify a pre-determined key and date value if you wish, with the `Key` being a `5 digit number` and the `Date` in `DDMMYY` format.  
 - The command would be  `ruby ./lib/encrypt.rb message.txt encrypted.txt 55555 290492` with 55555 being the key and 290492 representing the date (April 29, 1992).
