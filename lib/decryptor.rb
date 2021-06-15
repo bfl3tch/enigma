@@ -11,41 +11,86 @@ class Decryptor
     @key = key
     @date = date
     @offset = Offset.new(date)
+    @alphabet = create_alphabet
   end
 
-  def calcuate_offset(date)
-    date = @date
-    @offset.full_offset
+  def calcuate_split_offset
+    @offset.last_four_as_integers
   end
 
+  def split_key
+    @key.split("")
+  end
 
+  def split_as_integers
+    split_key.map do |string|
+      string.to_i
+    end
+  end
 
-  # def final_offset
-  #   @offset.full_offset
-  # end
-  #
-  # def offset_split
-  #   @offset.last_four_as_integers
-  # end
-  #
-  # def keys_as_ints
-  #   split_key = @key.split("")
-  #   key_split_integer = split_key.map { |key| key.to_i }
-  # end
-  #
-  # def split_keys_into_pairs
-  #   keys_as_ints.join.chars.each_cons(2).map { |pair| pair.join.to_i }
-  # end
-  #
-  # def keys_plus_offsets
-  #   offset_split.map.with_index do |number, index|
-  #     number + split_keys_into_pairs[index]
-  #   end
-  # end
-  #
-  # def full_shift
-  #   keys_plus_offsets.map do |number|
-  #     number % 27
-  #   end
-  # end
+  def split_keys_into_pairs
+    split_as_integers.join.chars.each_cons(2).map { |pair| pair.join.to_i }
+  end
+
+  def keys_plus_offsets
+    calcuate_split_offset.map.with_index do |number, index|
+      number + split_keys_into_pairs[index]
+    end
+  end
+
+  def calculate_shift
+    keys_plus_offsets.map do |number|
+      number % 27
+    end
+  end
+
+  def message_as_integers
+    integers = []
+    message_split = @message.split("")
+    message_split.each do |letter|
+      if @alphabet.include?(letter)
+        integers << @alphabet.index(letter)
+      else
+        integers << letter
+      end
+    end
+    integers
+  end
+
+  def message_broken_in_fours
+    foured = []
+    message_split = @message.split("")
+    foursome = message_split.each_slice(4).each do |four|
+      foured << four
+    end
+    foured
+  end
+
+  def message_broken_in_fours_integers
+    foured_integers = []
+    message_split = @message.split("")
+    foursome = message_as_integers.each_slice(4).each do |four|
+      foured_integers << four
+    end
+    foured_integers
+  end
+
+  def shifted_fours
+    shifted = []
+    message_broken_in_fours_integers.each do |fourty|
+      fourty.each.with_index do |char, index|
+        if char.is_a?(Integer)==false
+          shifted << char
+        else
+          char -= (calculate_shift[index])
+          shifted << @alphabet[char]
+          end
+        end
+      end
+    shifted
+  end
+
+  def joiner
+    shifted_fours.join
+  end
 end
