@@ -7,7 +7,7 @@ RSpec.describe Key do
 
   describe 'instantiation' do
     it 'creates a key' do
-    expect(@key).to be_an_instance_of(Key)
+      expect(@key).to be_an_instance_of(Key)
     end
 
     it 'has readable attributes' do
