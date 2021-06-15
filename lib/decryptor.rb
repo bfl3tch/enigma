@@ -6,7 +6,7 @@ class Decryptor
   attr_reader :key, :date, :offset, :message
   #make sure to test all module methods
   #maybe delete .txt files at end of project
-  def initialize(message = enigma.encrypted_output[:encryption], key = enigma.encrypted_output[:key], date = nigma.encrypted_output[:date])
+  def initialize(message = enigma.encrypted_output[:encryption], key = enigma.encrypted_output[:key], date = enigma.encrypted_output[:date])
     @message = message
     @key = key
     @date = date
@@ -29,7 +29,9 @@ class Decryptor
   end
 
   def split_keys_into_pairs
-    split_as_integers.join.chars.each_cons(2).map { |pair| pair.join.to_i }
+    split_as_integers.join.chars.each_cons(2).map do |pair|
+      pair.join.to_i
+    end
   end
 
   def keys_plus_offsets
