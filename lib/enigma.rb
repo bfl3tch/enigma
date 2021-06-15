@@ -23,7 +23,10 @@ class Enigma
     message = @encrypted[:encryption]
     key = @encrypted[:key]
     date = @encrypted[:date]
-
+    @decrypted =
+    { decryption: decrypted_message,
+      key: key,
+      date: date }
   end
 
   def message_as_integers
@@ -74,5 +77,9 @@ class Enigma
 
   def encrypted_message
     shifted_fours.join
+  end
+
+  def decrypted_message
+    # encrypted_message
   end
 end
