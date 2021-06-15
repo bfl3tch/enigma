@@ -15,6 +15,19 @@ RSpec.describe Decryptor do
       expect(@decryptor.date).to eq( "040895")
       # expect(@decryptor.offset.date).to eq("040895")
     end
+
+    it 'can calculate the offset' do
+      expect(@decryptor.calcuate_offset("040895")).to eq(1025)
+
+    end
+
+    #we have an encrypted message and the key and date DONE
+    #the date we can calculate the offset DONE
+    #with both the key and the offset, we can calculate the shift
+    #split the encrypyed message into fours, implement the new shift/splice
+    #rejoin the message
+    #return that as the result of the enigma method decrypted_message
+    #
   end
 
 
