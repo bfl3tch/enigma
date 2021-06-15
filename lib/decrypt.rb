@@ -18,14 +18,25 @@ date ||= Date.today.strftime("%d%m%y")
 handle = File.open(encrypted_file, "r")
 encrypted = handle.read.downcase.chomp
 handle.close
-hash = Hash.new
-hash[encrypted]
-# decrypted_hash = @enigma.decrypted_output
-decrypted_output =
-decrypted_text = @enigma.decrypt(ENCRYPTED_TEXT_FROM_FILE, key, date)
 
+decrypted_hash = @enigma.decrypted_output
+# trial_hash = {
+#     decryption: decrypted_text,
+#     key: key,
+#     date: date
+#   }
+# @decryptor = Decryptor.new(self.joiner, key, date)
+# decrypted_text = @enigma.decrypt(decryptor.joiner,key,date)
+@decrypted_text = @enigma.decrypt(encrypted, key, date)[:decryption]
+#below passes with current random key
+# decrypted_text = @enigma.decrypt("risnydcqapk!", key, date)
+@display_hash = {
+  decryption: @decrypted_text,
+    key: key,
+    date: date
+}
 writer = File.open(decrypted_file, "w")
-writer.write(decrypted_text)
+writer.write(@display_hash)
 writer.close
 
 puts "Created '#{decrypted_file}' with the key #{key} and date #{date}"

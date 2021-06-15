@@ -35,6 +35,7 @@ class Enigma
                     key: key,
                     date: date
                   }
+    @decrypted
   end
 
   def decrypted_output
@@ -88,6 +89,7 @@ class Enigma
   end
 
   def encrypted_message
+    # require "pry"; binding.pry
     shifted_fours.join
   end
 
