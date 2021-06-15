@@ -12,10 +12,10 @@ RSpec.describe Offset do
 
     it 'has readable attributes' do
       expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
-      allow(@offset).to receive(:todays_date).and_return("140621")
+      allow(@offset).to receive(:todays_date).and_return("150621")
 
       expect(@offset.alphabet).to eq(expected)
-      expect(@offset.date).to eq("140621")
+      expect(@offset.date).to eq("150621")
     end
   end
 
@@ -24,12 +24,12 @@ RSpec.describe Offset do
     it 'can square the days' do
       allow(@offset).to receive(:todays_date).and_return("140621")
 
-      expect(@offset.square_date).to eq(19774265641)
+      expect(@offset.square_date).to eq(22686685641)
     end
 
     it 'can split up the date' do
       allow(@offset).to receive(:todays_date).and_return("140621")
-      expected = ["1", "9", "7", "7", "4", "2", "6", "5", "6", "4", "1"]
+      expected = ["2", "2", "6", "8", "6", "6", "8", "5", "6", "4", "1"]
 
       expect(@offset.split_date).to eq(expected)
     end
