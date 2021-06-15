@@ -6,6 +6,7 @@ RSpec.describe Decryptor do
   end
 
   describe 'instantiation' do
+
     it 'creates a new object' do
       expect(@decryptor).to be_an_instance_of(Decryptor)
     end
@@ -18,6 +19,7 @@ RSpec.describe Decryptor do
   end
 
   describe 'it has a method that' do
+    
     it 'can calculate the offset' do
       expect(@decryptor.calcuate_split_offset).to eq([1, 0, 2, 5])
     end
@@ -68,7 +70,7 @@ RSpec.describe Decryptor do
 
     it 'can join that separated message into the expected output format' do
       expected = "hello world!"
-      
+
       expect(@decryptor.joiner).to eq(expected)
     end
   end

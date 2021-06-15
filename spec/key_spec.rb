@@ -6,6 +6,7 @@ RSpec.describe Key do
   end
 
   describe 'instantiation' do
+
     it 'creates a key' do
       expect(@key).to be_an_instance_of(Key)
     end
@@ -17,6 +18,7 @@ RSpec.describe Key do
   end
 
   describe 'it has a method that can' do
+    
     it 'can generate a random key' do
       expect(@key.key_gen).to be_a(String)
       expect(@key.key_gen.length).to eq(5)

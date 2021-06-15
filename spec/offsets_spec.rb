@@ -6,6 +6,7 @@ RSpec.describe Offset do
   end
 
   describe 'instantiation' do
+    
     it 'creates an offset' do
       expect(@offset).to be_an_instance_of(Offset)
     end
