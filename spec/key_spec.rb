@@ -17,8 +17,8 @@ RSpec.describe Key do
     end
   end
 
-  describe 'it has a method that can' do
-    
+  describe 'it has a method that' do
+
     it 'can generate a random key' do
       expect(@key.key_gen).to be_a(String)
       expect(@key.key_gen.length).to eq(5)
