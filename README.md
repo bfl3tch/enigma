@@ -23,7 +23,7 @@
 
 [Enigma](https://github.com/bfl3tch/enigma) is a 5, single person project during Mod 1 of 4, for Turing School's Back End Engineering Program.
 
-The challenge was to build an Enigma machine similar to the one developed by Alan Turing and his team in WW2.  Each individual letter in the message is shifted four times, and only those who can calculate the key and the offset can determine those shift amounts.
+The challenge was to build an Enigma machine similar to the one developed by Alan Turing and his team in WW2.  Each individual letter in the message is shifted four times, and only those who can know the key can reverse the process and reveal the original message.
 
 Learning goals and areas of focus consisted of:
 
