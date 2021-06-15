@@ -71,7 +71,7 @@ Learning goals and areas of focus consisted of:
 ### <ins>Self Evaluation</ins>
 
 Students were asked to just themselves according to [this](https://backend.turing.edu/module1/projects/enigma/rubric) rubric
-![self_eval](https://user-images.githubusercontent.com/74567704/122062483-7297dc00-cdbd-11eb-8305-2f6a707dacd7.png)
+![self_eval](https://user-images.githubusercontent.com/74567704/122077218-8cd7b700-cdc9-11eb-8cb9-c6eafd3edb61.png)
 
 ### <ins>Contributors</ins>
 
