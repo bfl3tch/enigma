@@ -1,5 +1,4 @@
 require_relative 'alphabet'
-require_relative 'decryptor'
 require_relative 'encryptor'
 require_relative 'enigma'
 require_relative 'key'
@@ -10,13 +9,26 @@ unencrypted_file ||= './message.txt'
 encrypted_file = ARGV[1]
 encrypted_file ||= './encrypted.txt'
 
+key = ARGV[2]
+key ||= Key.new.key_gen
+date = ARGV[3]
+date ||= Date.today.strftime("%d%m%y")
+
 handle = File.open(unencrypted_file, "r")
 @enigma = Enigma.new
-incoming_text = handle.read.downcase
-
-encrypted_text = @enigma.encrypt(incoming_text)
+incoming_text = handle.read.downcase.chomp
+encrypted_hash = @enigma.encrypt(incoming_text, key, date)
+@encryptor = Encryptor.new(key, date)
+@encrypted_text = encrypted_hash[:encryption]
 writer = File.open(encrypted_file, "w")
-writer.write(encrypted_text)
+
+# encrypted_hash[:encryption]
+@disp_hash = {  'decryption' => @encrypted_text,
+                'key' => key,
+                'date' => date
+              }
+# writer.write(@encrypted_text)
+writer.write(@disp_hash.to_s)
 writer.close
 
-puts "Created '#{encrypted_file}' with the key #{encrypted_text[:key]} and date #{encrypted_text[:date]}"
+puts "Created '#{encrypted_file}' with the key #{key} and date #{date}"

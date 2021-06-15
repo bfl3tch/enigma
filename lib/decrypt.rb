@@ -4,25 +4,33 @@ require_relative 'encryptor'
 require_relative 'enigma'
 require_relative 'key'
 require_relative 'offset'
+require 'json'
+
 
 encrypted_file = ARGV[0]
 encrypted_file ||= './encrypted.txt'
 decrypted_file = ARGV[1]
 decrypted_file ||= './decrypted.txt'
 
-key = Key.new(ARGV[2])
-date = Offset.new(ARGV[3])
+key = ARGV[2]
+date = ARGV[3]
+date ||= Date.today.strftime("%d%m%y")
+@enigma = Enigma.new
 
 handle = File.open(encrypted_file, "r")
-incoming_text = handle.read.downcase
+encrypted = handle.read.downcase.chomp
+encrypted = JSON.parse(encrypted.gsub('=>', ':'))
 handle.close
 
-@enigma = Enigma.new
-@decryptor = Decryptor.new(incoming_text, key, date)
+decrypted_hash = @enigma.decrypted_output
+@decrypted_text = @enigma.decrypt(encrypted["decryption"], key, date)
+@display_hash = { decryption: @decrypted_text,
+                  key: key,
+                  date: date
+                }
 
-decrypted_text = @enigma.decrypt(incoming_text, key, date)
 writer = File.open(decrypted_file, "w")
-writer.write(decrypted_file)
+writer.write(@display_hash)
 writer.close
 
-puts "Created '#{decrypted_file}' with the key #{@enigma.decrypted_output[:key].key} and date #{@enigma.decrypted_output[:date].date}"
+puts "Created '#{decrypted_file}' with the key #{key} and date #{date}"

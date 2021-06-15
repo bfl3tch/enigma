@@ -5,7 +5,7 @@ class Decryptor
   include Alphabet
   attr_reader :key, :date, :offset, :message
 
-  def initialize(message = enigma.encrypted_output[:encryption], key = enigma.encrypted_output[:key], date = enigma.encrypted_output[:date])
+  def initialize(message, key, date = enigma.encrypted_output[:date])
     @message = message
     @key = key
     @date = date

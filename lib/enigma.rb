@@ -3,13 +3,18 @@ require_relative 'decryptor'
 
 class Enigma
   include Alphabet
+    attr_reader :encrypted_output, :message
+    def initialize
+      @message = message
+    end
 
-  def encrypt(message, key = nil, date = nil)
-    key ||= Key.new.key
-    date ||= Offset.new.date
+  def encrypt(message, key = Key.new.key_gen, date = Offset.new.date)
+    # key ||= Key.new.key
+    # date ||= Offset.new.date
     @encryptor = Encryptor.new(key, date)
     @alphabet = create_alphabet
     @message = message
+    @key = key
     @encrypted =
     { encryption: encrypted_message.chomp,
       key: key,
@@ -20,15 +25,17 @@ class Enigma
     @encrypted
   end
 
-  def decrypt(message = enigma.encrypted_output[:encryption], key = enigma.encrypted_output[:key], date = enigma.encrypted_output[:date])
-    @decryptor = Decryptor.new(message, key, date)
+  def decrypt(message, key, date = Date.today.strftime("%d%m%y"))
     @message = message
     @key = key
     @date = date
-    @decrypted =  { decryption: decrypted_message,
+    @decryptor = Decryptor.new(message, key, date)
+
+    @decrypted =  { decryption: decrypted_message.chomp,
                     key: key,
                     date: date
                   }
+    @decrypted
   end
 
   def decrypted_output
@@ -82,6 +89,7 @@ class Enigma
   end
 
   def encrypted_message
+    # require "pry"; binding.pry
     shifted_fours.join
   end
 
