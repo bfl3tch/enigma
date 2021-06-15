@@ -6,7 +6,7 @@ RSpec.describe Enigma do
   end
 
   describe 'instantiation' do
-    it 'creates a new object' do
+    it 'creates an enigma' do
       expect(@enigma).to be_an_instance_of(Enigma)
     end
   end

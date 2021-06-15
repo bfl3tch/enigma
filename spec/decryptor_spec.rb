@@ -7,7 +7,7 @@ RSpec.describe Decryptor do
 
   describe 'instantiation' do
 
-    it 'creates a new object' do
+    it 'creates a decryptor' do
       expect(@decryptor).to be_an_instance_of(Decryptor)
     end
 
@@ -19,7 +19,7 @@ RSpec.describe Decryptor do
   end
 
   describe 'it has a method that' do
-    
+
     it 'can calculate the offset' do
       expect(@decryptor.calcuate_split_offset).to eq([1, 0, 2, 5])
     end
