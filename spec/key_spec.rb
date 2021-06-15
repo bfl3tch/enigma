@@ -24,15 +24,5 @@ RSpec.describe Key do
       allow(@key).to receive(:key_gen).and_return("05555")
       expect(@key.key_gen).to eq("05555")
     end
-
-
-    # it 'can calculate the individual keys' do
-    #   tester = Key.new("55555")
-    #
-    #   expect(tester.a_key).to eq(41)
-    #   expect(tester.b_key).to eq(12)
-    #   expect(tester.c_key).to eq(21)
-    #   expect(tester.d_key).to eq(15)
-    # end
   end
 end

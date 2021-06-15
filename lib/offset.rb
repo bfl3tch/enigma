@@ -1,4 +1,5 @@
-require 'alphabet'
+require_relative 'alphabet'
+require 'date'
 
 class Offset
   include Alphabet
@@ -24,7 +25,7 @@ class Offset
   def last_four_split
     split_date[-4, 4]
   end
- # add this test
+
   def last_four_as_integers
     last_four_split.map do |string|
       string.to_i
@@ -34,27 +35,4 @@ class Offset
   def full_offset
     last_four_split.join.to_i
   end
-
-  # def offset_assignment
-  #   full_offset.each do |offset|
-  #     require "pry"; binding.pry
-  #   end
-  #
-  # end
-
-  # def offset_a
-  #   @offset[0].to_i
-  # end
-  #
-  # def offset_b
-  #   @offset[1].to_i
-  # end
-  #
-  # def offset_c
-  #   @offset[2].to_i
-  # end
-  #
-  # def offset_d
-  #   @offset[3].to_i
-  # end
 end

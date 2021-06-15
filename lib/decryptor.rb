@@ -1,38 +1,48 @@
-require './lib/alphabet'
-require_relative 'decryptor'
+require_relative 'offset'
+require_relative 'enigma'
 
-class Enigma
+class Decryptor
   include Alphabet
+  attr_reader :key, :date, :offset, :message
 
-  def encrypt(message, key = nil, date = nil)
-    key ||= Key.new.key
-    date ||= Offset.new.date
-    @encryptor = Encryptor.new(key, date)
-    @alphabet = create_alphabet
-    @message = message
-    @encrypted =
-    { encryption: encrypted_message.chomp,
-      key: key,
-      date: date }
-  end
-
-  def encrypted_output
-    @encrypted
-  end
-
-  def decrypt(message = enigma.encrypted_output[:encryption], key = enigma.encrypted_output[:key], date = enigma.encrypted_output[:date])
+  def initialize(message = enigma.encrypted_output[:encryption], key = enigma.encrypted_output[:key], date = enigma.encrypted_output[:date])
     @message = message
     @key = key
     @date = date
-    @decryptor = Decryptor.new(message, key, date)
-    @decrypted =
-    { decryption: decrypted_message,
-      key: key,
-      date: date }
+    @offset = Offset.new(date)
+    @alphabet = create_alphabet
   end
 
-  def decrypted_output
-    @decrypted
+  def calcuate_split_offset
+    @offset.last_four_as_integers
+  end
+
+  def split_key
+    @key.split("")
+  end
+
+  def split_as_integers
+    split_key.map do |string|
+      string.to_i
+    end
+  end
+
+  def split_keys_into_pairs
+    split_as_integers.join.chars.each_cons(2).map do |pair|
+      pair.join.to_i
+    end
+  end
+
+  def keys_plus_offsets
+    calcuate_split_offset.map.with_index do |number, index|
+      number + split_keys_into_pairs[index]
+    end
+  end
+
+  def calculate_shift
+    keys_plus_offsets.map do |number|
+      number % 27
+    end
   end
 
   def message_as_integers
@@ -73,7 +83,7 @@ class Enigma
         if char.is_a?(Integer)==false
           shifted << char
         else
-          char += (@encryptor.full_shift[index] - 27)
+          char -= (calculate_shift[index])
           shifted << @alphabet[char]
           end
         end
@@ -81,11 +91,7 @@ class Enigma
     shifted
   end
 
-  def encrypted_message
+  def joiner
     shifted_fours.join
-  end
-
-  def decrypted_message
-    @decryptor.joiner
   end
 end

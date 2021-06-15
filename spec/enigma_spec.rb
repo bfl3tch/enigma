@@ -10,9 +10,9 @@ RSpec.describe Enigma do
       expect(@enigma).to be_an_instance_of(Enigma)
     end
   end
-  #
+
   describe 'it has a method that can' do
-    it 'can convert the message to fours' do
+    it 'can convert the message letters to integer values' do
       @enigma.encrypt("hello world", "02715", "040895")
       expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
       expect(@enigma.message_as_integers).to eq(expected)
@@ -22,33 +22,48 @@ RSpec.describe Enigma do
       @enigma.encrypt("hello world", "02715", "040895")
       expected =  [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
       expect(@enigma.message_broken_in_fours).to eq(expected)
-
     end
 
     it 'can convert the message to integer equivalents' do
       @enigma.encrypt("hello world", "02715", "040895")
       expected = [[7, 4, 11, 11], [14, 26, 22, 14], [17, 11, 3]]
       expect(@enigma.message_broken_in_fours_integers).to eq(expected)
-
     end
 
     it 'can translate the message into encrypted text' do
       @enigma.encrypt("hello world", "02715", "040895")
       expected = ["k", "e", "d", "e", "r", " ", "o", "h", "u", "l", "w"]
       expect(@enigma.shifted_fours).to eq(expected)
-
     end
+
+    it 'can show the hash of encrypted output' do
+      @enigma.encrypt("hello world", "02715", "040895")
+      expected = {:date=>"040895", :encryption=>"keder ohulw", :key=>"02715"}
+      expect(@enigma.encrypted_output).to eq(expected)
+    end
+
     it 'can encrypt something' do
-      test = @enigma.encrypt("hello world", "02715", "040895")
-      expected = {
-        encryption: "keder ohulw",
-        key: "02715",
-        date: "040895"
-      }
+      test = @enigma.encrypt("hello world!", "02715", "040895")
+      expected = {  encryption: "keder ohulw!",
+                    key: "02715",
+                    date: "040895"
+                  }
 
       expect(test[:encryption]).to eq(expected[:encryption])
       expect(test[:key]).to eq(expected[:key])
       expect(test[:date]).to eq(expected[:date])
+    end
+
+    it 'can decrypt something' do
+      @enigma.decrypt("keder ohulw!", "02715", "040895")
+      expect(@enigma.decrypted_message).to eq("hello world!")
+    end
+
+    it 'can display the decrypted output hash' do
+      @enigma.decrypt("keder ohulw!", "02715", "040895")
+      expect(@enigma.decrypted_output[:date]).to eq("040895")
+      expect(@enigma.decrypted_output[:decryption]).to eq("hello world!")
+      expect(@enigma.decrypted_output[:key]).to eq("02715")
     end
   end
 end

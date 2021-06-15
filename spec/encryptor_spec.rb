@@ -28,7 +28,6 @@ RSpec.describe Encryptor do
 
     it 'can split the full offset' do
       expect(@encryptor.offset_split).to eq([1, 0, 2, 5])
-
     end
 
     it 'can split the keys into the required pairs' do
