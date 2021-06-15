@@ -10,7 +10,7 @@ RSpec.describe Enigma do
       expect(@enigma).to be_an_instance_of(Enigma)
     end
   end
-  #
+
   describe 'it has a method that can' do
     it 'can convert the message letters to integer values' do
       @enigma.encrypt("hello world", "02715", "040895")
@@ -58,7 +58,6 @@ RSpec.describe Enigma do
       @enigma.decrypt("keder ohulw!", "02715", "040895")
       expect(@enigma.decrypted_message).to eq("hello world!")
     end
-
 
     it 'can display the decrypted output hash' do
       @enigma.decrypt("keder ohulw!", "02715", "040895")
