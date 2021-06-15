@@ -28,26 +28,26 @@ RSpec.describe Enigma do
       @enigma.encrypt("hello world", "02715", "040895")
       expected = [[7, 4, 11, 11], [14, 26, 22, 14], [17, 11, 3]]
       expect(@enigma.message_broken_in_fours_integers).to eq(expected)
-
     end
 
     it 'can translate the message into encrypted text' do
       @enigma.encrypt("hello world", "02715", "040895")
       expected = ["k", "e", "d", "e", "r", " ", "o", "h", "u", "l", "w"]
       expect(@enigma.shifted_fours).to eq(expected)
-
     end
+
     it 'can show the hash of encrypted output' do
       @enigma.encrypt("hello world", "02715", "040895")
-      expect(@enigma.encrypted_output).to eq({:date=>"040895", :encryption=>"keder ohulw", :key=>"02715"})
+      expected = {:date=>"040895", :encryption=>"keder ohulw", :key=>"02715"}
+      expect(@enigma.encrypted_output).to eq(expected)
     end
+
     it 'can encrypt something' do
       test = @enigma.encrypt("hello world!", "02715", "040895")
-      expected = {
-        encryption: "keder ohulw!",
-        key: "02715",
-        date: "040895"
-      }
+      expected = {  encryption: "keder ohulw!",
+                    key: "02715",
+                    date: "040895"
+                  }
 
       expect(test[:encryption]).to eq(expected[:encryption])
       expect(test[:key]).to eq(expected[:key])
@@ -55,10 +55,16 @@ RSpec.describe Enigma do
     end
 
     it 'can decrypt something' do
-      @enigma.encrypt("hello world!", "02715", "040895")
-      expect(@enigma.encrypted_output[:date]).to eq("040895")
-      expect(@enigma.encrypted_output[:message]).to eq("hello world!")
-      expect(@enigma.encrypted_output[:key]).to eq("02715")
+      @enigma.decrypt("keder ohulw!", "02715", "040895")
+      expect(@enigma.decrypted_message).to eq("hello world!")
+    end
+
+
+    it 'can display the decrypted output hash' do
+      @enigma.decrypt("keder ohulw!", "02715", "040895")
+      expect(@enigma.decrypted_output[:date]).to eq("040895")
+      expect(@enigma.decrypted_output[:decryption]).to eq("hello world!")
+      expect(@enigma.decrypted_output[:key]).to eq("02715")
     end
   end
 end
