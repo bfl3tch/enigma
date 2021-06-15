@@ -58,8 +58,15 @@ RSpec.describe Enigma do
       expect(test[:date]).to eq(expected[:date])
     end
 
+    it 'can display the decrypted message output' do
+      @enigma.decrypt("keder ohulw!", "02715", "040895")
+
+      expect(@enigma.decrypted_output[:decryption]).to eq("hello world!")
+    end
+
     it 'can decrypt something' do
       @enigma.decrypt("keder ohulw!", "02715", "040895")
+
       expect(@enigma.decrypted_message).to eq("hello world!")
     end
 
